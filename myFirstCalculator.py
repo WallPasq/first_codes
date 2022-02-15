@@ -61,7 +61,7 @@ def calculator(op, num):
                     break
                 print("%.2f ** (1/%d) = %.2f" % (result, i, result ** (1 / i)))
                 result **= (1 / i)
-            validator += 1
+            validator = 1
     print("\n")
     return result
 
