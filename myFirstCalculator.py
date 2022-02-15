@@ -92,7 +92,7 @@ while math_operation != 0:
         "5 - Exponentiation\n"
         "6 - Root\n"
         "*****************************************************************\n"))
-    while (math_operation < 1) or (math_operation > 6):
+    while math_operation < 1 or math_operation > 6:
         os.system('cls')
         print(
             "CALCULATOR - Developed by Wallacy Pasqualini\n\n"
@@ -131,7 +131,7 @@ while math_operation != 0:
         "0 - No\n"
         "1 - Yes\n"
         "*****************************************************************\n"))
-    while (math_operation != 0) and (math_operation != 1):
+    while math_operation != 0 and math_operation != 1:
         print("\n!!! Please enter a valid number !!!\n")
         math_operation = correctingNumber(input(
             "*****************************************************************\n"
