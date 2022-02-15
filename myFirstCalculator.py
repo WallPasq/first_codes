@@ -13,51 +13,84 @@ def calculator(op, num):
     result = 0
     counter = 0
     if op == 1:
+        result = num[0]
+        print("\n%d" % result)
         for i in num:
-            result += i
+            if counter > 0:
+                result += i
+                counter += 1
+                print("+\n%d\n=\n%d" % (i, result))
+            counter += 1
     elif op == 2:
         result = num[0]
+        print("\n%d" % result)
         for i in num:
             if counter > 0:
                 result -= i
                 counter += 1
+                print("-\n%d\n=\n%d" % (i, result))
             counter += 1
     elif op == 3:
         result = num[0]
+        print("\n%d" % result)
         for i in num:
             if counter > 0:
                 result *= i
                 counter += 1
+                print("*\n%d\n=\n%d" % (i, result))
             counter += 1
     elif op == 4:
         result = num[0]
+        print("\n%d" % result)
         for i in num:
             if counter > 0:
+                if i == 0:
+                    print("/\n%d\n=\nCannot divide by 0" % i)
+                    break
                 result /= i
                 counter += 1
+                print("/\n%d\n=\n%.2f" % (i, result))
             counter += 1
     elif op == 5:
         result = num[0]
+        print("\n%d" % result)
         for i in num:
             if counter > 0:
                 result **= i
                 counter += 1
+                print("**\n%d\n=\n%.2f" % (i, result))
             counter += 1
     elif op == 6:
         result = num[0]
+        print("\n%d" % result)
         for i in num:
             if counter > 0:
+                if i == 0:
+                    print("**\n(1/%d)\n=\nCannot find 0th root" % i)
+                    break
                 result **= (1 / i)
                 counter += 1
+                print("**\n(1/%d)\n=\n%.2f" % (i, result))
             counter += 1
     return result
+
+
+def correctingNumber(n):
+    # Function that does not allow entries other than integers
+    while True:
+        try:
+            n = int(n)
+            break
+        except ValueError:
+            n = input("\n!!! Please enter an integer !!!\n")
+    return n
 
 
 # Main program
 os.system('cls')
 math_operation = 1
 while math_operation != 0:
-    math_operation = int(input(
+    math_operation = correctingNumber(input(
         "CALCULATOR - Developed by Wallacy Pasqualini\n\n"
         "*****************************************************************\n"
         "Enter the number corresponding to the desired math operation:\n"
@@ -73,7 +106,7 @@ while math_operation != 0:
         print(
             "CALCULATOR - Developed by Wallacy Pasqualini\n\n"
             "!!! Please enter a valid number !!!\n")
-        math_operation = int(input(
+        math_operation = correctingNumber(input(
             "*****************************************************************\n"
             "Enter the number corresponding to the desired math operation:\n"
             "1 - Sum\n"
@@ -83,25 +116,25 @@ while math_operation != 0:
             "5 - Exponentiation\n"
             "6 - Root\n"
             "*****************************************************************\n"))
-    amount = int(input("\nHow many numbers will your math operation have? "))
+    amount = correctingNumber(input("\nHow many numbers will your math operation have? "))
     while amount < 2:
         print("\n!!! The program needs two or more numbers to work !!!\n")
-        amount = int(input("\nHow many numbers will your math operation have? "))
+        amount = correctingNumber(input("\nHow many numbers will your math operation have? "))
     print("\n")
     x = 0
     numbers = []
     while x < amount:
         if x == 0:
-            numbers.append(int(input("Enter the 1st number: ")))
+            numbers.append(correctingNumber(input("Enter the 1st number: ")))
         elif x == 1:
-            numbers.append(int(input("Enter the 2nd number: ")))
+            numbers.append(correctingNumber(input("Enter the 2nd number: ")))
         elif x == 2:
-            numbers.append(int(input("Enter the 3rd number: ")))
+            numbers.append(correctingNumber(input("Enter the 3rd number: ")))
         else:
-            numbers.append(int(input("Enter the %dth number: " % (x + 1))))
+            numbers.append(correctingNumber(input("Enter the %dth number: " % (x + 1))))
         x += 1
-    print("\nThe result is", calculator(math_operation, numbers), "\n")
-    math_operation = int(input(
+    calculator(math_operation, numbers)
+    math_operation = correctingNumber(input(
         "*****************************************************************\n"
         "Want to perform one more math operation?\n"
         "0 - No\n"
@@ -109,10 +142,10 @@ while math_operation != 0:
         "*****************************************************************\n"))
     while (math_operation != 0) and (math_operation != 1):
         print("\n!!! Please enter a valid number !!!\n")
-        math_operation = int(input(
+        math_operation = correctingNumber(input(
             "*****************************************************************\n"
             "Want to perform one more math operation?\n"
-            "1 - Yes\n"
             "0 - No\n"
+            "1 - Yes\n"
             "*****************************************************************\n"))
     os.system('cls')
