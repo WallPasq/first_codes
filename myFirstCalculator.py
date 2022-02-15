@@ -72,6 +72,7 @@ def calculator(op, num):
                 counter += 1
                 print("**\n(1/%d)\n=\n%.2f" % (i, result))
             counter += 1
+    print("\n")
     return result
 
 
