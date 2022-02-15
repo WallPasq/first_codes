@@ -10,68 +10,58 @@ import os
 
 def calculator(op, num):
     # Creates a calculator that performs calculations with as many numbers as the user wants
-    result = 0
-    counter = 0
+    result = num[0]
+    validator = 0
+    print("\n")
     if op == 1:
-        result = num[0]
-        print("\n%d" % result)
         for i in num:
-            if counter > 0:
+            if validator != 0:
+                print("%d + %d = %d" % (result, i, result + i))
                 result += i
-                counter += 1
-                print("+\n%d\n=\n%d" % (i, result))
-            counter += 1
+            validator = 1
     elif op == 2:
-        result = num[0]
-        print("\n%d" % result)
         for i in num:
-            if counter > 0:
+            if validator != 0:
+                print("%d - %d = %d" % (result, i, result - i))
                 result -= i
-                counter += 1
-                print("-\n%d\n=\n%d" % (i, result))
-            counter += 1
+            validator = 1
     elif op == 3:
-        result = num[0]
-        print("\n%d" % result)
         for i in num:
-            if counter > 0:
+            if validator != 0:
+                print("%d * %d = %d" % (result, i, result * i))
                 result *= i
-                counter += 1
-                print("*\n%d\n=\n%d" % (i, result))
-            counter += 1
+            validator = 1
     elif op == 4:
-        result = num[0]
-        print("\n%d" % result)
         for i in num:
-            if counter > 0:
+            if validator != 0:
                 if i == 0:
-                    print("/\n%d\n=\nCannot divide by 0" % i)
+                    print("%.2f / %d = Cannot divide by 0" % (result, i))
                     break
+                print("%.2f / %d = %.2f" % (result, i, result / i))
                 result /= i
-                counter += 1
-                print("/\n%d\n=\n%.2f" % (i, result))
-            counter += 1
+            validator = 1
     elif op == 5:
-        result = num[0]
-        print("\n%d" % result)
         for i in num:
-            if counter > 0:
-                result **= i
-                counter += 1
-                print("**\n%d\n=\n%.2f" % (i, result))
-            counter += 1
-    elif op == 6:
-        result = num[0]
-        print("\n%d" % result)
-        for i in num:
-            if counter > 0:
-                if i == 0:
-                    print("**\n(1/%d)\n=\nCannot find 0th root" % i)
+            if validator != 0:
+                if result == 0 and i <= 0:
+                    print("%.2f ** %d = 0 cannot be raised to 0 or a negative power" % (result, i))
                     break
+                else:
+                    print("%.2f ** %d = %.2f" % (result, i, result ** i))
+                    result **= i
+            validator = 1
+    elif op == 6:
+        for i in num:
+            if validator != 0:
+                if i == 0:
+                    print("%.2f ** (1/%d) = Cannot find 0th root" % (result, i))
+                    break
+                if result == 0 and i < 0:
+                    print("%.2f ** (1/%d) = 0 cannot be raised to negative power" % (result, i))
+                    break
+                print("%.2f ** (1/%d) = %.2f" % (result, i, result ** (1 / i)))
                 result **= (1 / i)
-                counter += 1
-                print("**\n(1/%d)\n=\n%.2f" % (i, result))
-            counter += 1
+            validator += 1
     print("\n")
     return result
 
