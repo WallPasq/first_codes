@@ -16,66 +16,73 @@ def calculator(op, num):
     if op == 1:
         for i in num:
             if validator != 0:
-                print("%d + %d = %d" % (result, i, result + i))
+                print("%.2f + %.2f = %.2f" % (result, i, result + i))
                 result += i
             validator = 1
     elif op == 2:
         for i in num:
             if validator != 0:
-                print("%d - %d = %d" % (result, i, result - i))
+                print("%.2f - %.2f = %.2f" % (result, i, result - i))
                 result -= i
             validator = 1
     elif op == 3:
         for i in num:
             if validator != 0:
-                print("%d * %d = %d" % (result, i, result * i))
+                print("%.2f * %.2f = %.2f" % (result, i, result * i))
                 result *= i
             validator = 1
     elif op == 4:
         for i in num:
             if validator != 0:
                 if i == 0:
-                    print("%.2f / %d = Cannot divide by 0" % (result, i))
+                    print("%.2f / %.2f = Cannot divide by 0" % (result, i))
                     break
-                print("%.2f / %d = %.2f" % (result, i, result / i))
+                print("%.2f / %.2f = %.2f" % (result, i, result / i))
                 result /= i
             validator = 1
     elif op == 5:
         for i in num:
             if validator != 0:
                 if result == 0 and i <= 0:
-                    print("%.2f ** %d = 0 cannot be raised to 0 or a negative power" % (result, i))
+                    print("%.2f ** %.2f = 0 cannot be raised to 0 or a negative power" % (result, i))
                     break
                 else:
-                    print("%.2f ** %d = %.2f" % (result, i, result ** i))
+                    print("%.2f ** %.2f = %.2f" % (result, i, result ** i))
                     result **= i
             validator = 1
     elif op == 6:
         for i in num:
             if validator != 0:
                 if i == 0:
-                    print("%.2f ** (1/%d) = Cannot find 0th root" % (result, i))
+                    print("%.2f ** (1/%.2f) = Cannot find 0th root" % (result, i))
                     break
                 if result == 0 and i < 0:
-                    print("%.2f ** (1/%d) = 0 cannot be raised to negative power" % (result, i))
+                    print("%.2f ** (1/%.2f) = 0 cannot be raised to negative power" % (result, i))
                     break
-                print("%.2f ** (1/%d) = %.2f" % (result, i, result ** (1 / i)))
+                print("%.2f ** (1/%.2f) = %.2f" % (result, i, result ** (1 / i)))
                 result **= (1 / i)
             validator = 1
     print("\n")
     return result
 
 
-def correctingNumber(n):
-    # Function that does not allow entries other than integers
-    while True:
-        try:
-            n = int(n)
-            break
-        except ValueError:
-            n = input("\n!!! Please enter an integer !!!\n")
+def correctingNumber(n, f = False):
+    # Function that does not allow entries other than integers or float
+    if f == False:
+        while True:
+            try:
+                n = int(n)
+                break
+            except ValueError:
+                n = input("\n!!! Please enter an integer !!!\n")
+    else:
+        while True:
+            try:
+                n = float(n)
+                break
+            except ValueError:
+                n = input("\n!!! Please enter an float !!!\n")
     return n
-
 
 # Main program
 os.system('cls')
@@ -116,13 +123,13 @@ while math_operation != 0:
     numbers = []
     while x < amount:
         if x == 0:
-            numbers.append(correctingNumber(input("Enter the 1st number: ")))
+            numbers.append(correctingNumber(input("Enter the 1st number: "), True))
         elif x == 1:
-            numbers.append(correctingNumber(input("Enter the 2nd number: ")))
+            numbers.append(correctingNumber(input("Enter the 2nd number: "), True))
         elif x == 2:
-            numbers.append(correctingNumber(input("Enter the 3rd number: ")))
+            numbers.append(correctingNumber(input("Enter the 3rd number: "), True))
         else:
-            numbers.append(correctingNumber(input("Enter the %dth number: " % (x + 1))))
+            numbers.append(correctingNumber(input("Enter the %dth number: " % (x + 1)), True))
         x += 1
     calculator(math_operation, numbers)
     math_operation = correctingNumber(input(
